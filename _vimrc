@@ -7,6 +7,7 @@
 "
 " Basic Settings ------------------------------------------------------------ {{{
 syntax on                 "enable syntax highlighting
+let $MYVIMRC='c:/users/jlw/win_home/git/vim/_vimrc'
 set showmatch             "show matching brackets
 set laststatus=2          "enable the status bar
 set showcmd               "show command in the last line of the screen
