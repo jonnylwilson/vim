@@ -1,4 +1,5 @@
-![VIM](https://upload.wikimedia.org/wikipedia/commons/9/9f/Vimlogo.svg =250x)
+![VIM](https://upload.wikimedia.org/wikipedia/commons/9/9f/Vimlogo.svg)
+{:height=height="250px"}
 # Jonny Wilson's vimrc
 
 This configuration is the current version of vimrc that I am running, the aim of
