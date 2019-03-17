@@ -11,7 +11,9 @@ this configuration suitable for both Windows 10 and Linux.
 ## Installing
 
 Simply clone or copy the files from this github repository, and place them in
-the correct folders that Vim looks for them.
-
+the correct folders that Vim looks for them. The default location is the home
+directory. 
+```
 cd ~
 git clone https://github.com/jonnylwilson/vim.git .
+```
