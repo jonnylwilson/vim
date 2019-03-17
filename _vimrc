@@ -5,9 +5,12 @@
 " License:      This file is placed in the public domain.
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
+" Settings:Windows 10 ------------------------------------------------------- {{{
+"set location of vimrc
+let $MYVIMRC='c:/users/jlw/win_home/git/vim/_vimrc'
+" }}}
 " Basic Settings ------------------------------------------------------------ {{{
 syntax on                 "enable syntax highlighting
-let $MYVIMRC='c:/users/jlw/win_home/git/vim/_vimrc'
 set showmatch             "show matching brackets
 set laststatus=2          "enable the status bar
 set showcmd               "show command in the last line of the screen
@@ -65,7 +68,7 @@ inoremap jk <ESC>
 "set <C-l> to clear search highlighting
 nnoremap <silent> <C-l> :nohlsearch<CR><C-l>
 "set <C-l> enable/disable whitespaces
-nnoremap <silent> <C-w> :set list!<CR>
+nnoremap <silent> <C-0> :set list!<CR>
 "set <C-+> enable/disable whitespaces
 nnoremap + :call SetFontSize_inc()<CR> :echo getfontname()<CR>
 nnoremap - :call SetFontSize_dec()<CR> :echo getfontname()<CR>
@@ -92,6 +95,7 @@ function! DefaultOverLength()
   match OverLength /\%>81v.\+/
 endfunction
 " 
+call DefaultOverLength()
 let g:overlength_toggle_enabled=0
 function! OverLengthToggle()
 match OverLength /\%>81v.\+/
