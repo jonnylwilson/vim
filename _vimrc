@@ -4,7 +4,6 @@
 " Maintainer:   Jonny Wilson <jonnylwilson@gmail.com>
 " License:      This file is placed in the public domain.
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"
 " Package Manager:VimPlug --------------------------------------------------- {{{
 call plug#begin()
 "vimtex plugin
@@ -64,7 +63,7 @@ set list
 set listchars=tab:>-,trail:·,extends:>,eol:¬,space:·
 set spell spelllang=en_us
 let g:solarized_visibility="low"  "to make listchars display better
-colorscheme dracula       "set the color scheme
+silent! colorscheme dracula       "set the color scheme
 set guioptions=           "disable all additional GUI options
 set guifont=Consolas      "set the default GUI font
 set mouse=a               "mouse clicks do not move cursor
