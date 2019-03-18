@@ -5,60 +5,19 @@
 " License:      This file is placed in the public domain.
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
-" Basic Settings ------------------------------------------------------------{{{
-syntax on                 "enable syntax highlighting
-set encoding=utf-8        "set default encoding
-set shell=powershell      "set default shell
-set showmatch             "show matching brackets
-set laststatus=2          "enable the status bar
-set showcmd               "show command in the last line of the screen
-set number                "show line number
-set relativenumber        "show line number relative to the line with cursor
-set ruler                 "show line and column number of cursor position
-set nowrap                "disable text wrapping
-set scrolloff=50          "minimum number of lines to keep above & below cursor
-set textwidth=80          "set text width
-set colorcolumn=+1        "set highlighting screen column
-set columns=80           "set default number of columns
-set nrformats-=octal,hex  "number increment settings
-set hlsearch              "highlight all search results
-set incsearch             "highlight search while typing
-set backspace=2           "backspace deletes like most programs in insert mode
-set clipboard=unnamed     "use the systems clipboard as default
-set splitright            "set splits to right
-set splitbelow            "set splits below
-set foldmethod=marker     "set fold method
-"
-"
-" }}}
-" Tab Settings -------------------------------------------------------------- {{{
-set tabstop=2             "number of spaces that a <Tab> in the file counts for
-set expandtab             "use tabs instead of spaces
-"
-"
-" }}}
-" Auto Indent Settings ------------------------------------------------------ {{{
-set autoindent            "enable auto indent
-set shiftwidth=2          "number of spaces for auto indent
-"
-"
-" }}}
-" GUI Settings -------------------------------------------------------------- {{{
-let g:solarized_visibility="low"  "to make listchars display better
-colorscheme dracula       "set the color scheme
-set guioptions=           "disable all additional GUI options
-set guifont=Consolas      "set the default GUI font
-set mouse=a               "mouse clicks do not move cursor
-set mousehide             "hide mouse when typing
-" }}}
-" White space Settings ------------------------------------------------------ {{{
-set list
-set listchars=tab:>-,trail:·,extends:>,eol:¬,space:·
-"
-"
-" }}}
-" Spelling Settings --------------------------------------------------------- {{{
-set spell spelllang=en_us
+" Package Manager:VimPlug --------------------------------------------------- {{{
+call plug#begin()
+"vimtex plugin
+Plug 'lervag/vimtex'
+"nerdtree plugin
+Plug 'scrooloose/nerdtree'
+"colorscheme plugin
+Plug 'https://github.com/xolox/vim-misc'
+Plug 'https://github.com/xolox/vim-colorscheme-switcher'
+Plug 'itchyny/lightline.vim'
+"download dracula theme
+Plug 'dracula/vim', { 'as': 'dracula' }
+call plug#end()
 " }}}
 " Package Manager:VimPlug --------------------------------------------------- {{{
 call plug#begin()
@@ -70,22 +29,59 @@ Plug 'scrooloose/nerdtree'
 Plug 'https://github.com/xolox/vim-misc'
 Plug 'https://github.com/xolox/vim-colorscheme-switcher'
 Plug 'itchyny/lightline.vim'
+"download dracula theme
+Plug 'dracula/vim', { 'as': 'dracula' }
 call plug#end()
 " }}}
-" PlugIn:VimLatex ----------------------------------------------------------- {{{
-let g:vimtex_view_general_viewer = 'SumatraPDF'
+" Settings: Basic ------------------------------------------------------------{{{
+syntax on                 "enable syntax highlighting
+set encoding=utf-8        "set default encoding
+set shell=powershell      "set default shell
+set laststatus=2          "enable the status bar
+set showcmd               "show command in the last line of the screen
+set number                "show line number
+set relativenumber        "show line number relative to the line with cursor
+set ruler                 "show line and column number of cursor position
+set textwidth=80          "set text width
+set colorcolumn=+1        "set highlighting screen column
+set columns=80           "set default number of columns
+set scrolloff=50          "minimum number of lines to keep above & below cursor
+set nowrap                "disable text wrapping
+set hlsearch              "highlight all search results
+set incsearch             "highlight search while typing
+set showmatch             "show matching brackets
+set backspace=2           "backspace deletes like most programs in insert mode
+set clipboard=unnamed     "use the systems clipboard as default
+set splitright            "set splits to right
+set splitbelow            "set splits below
+set foldmethod=marker     "set fold method
+set nrformats-=octal,hex  "number increment settings
+set tabstop=2             "number of spaces that a <Tab> in the file counts for
+set expandtab             "use tabs instead of spaces
+set autoindent            "enable auto indent
+set shiftwidth=2          "number of spaces for auto indent
+set list
+set listchars=tab:>-,trail:·,extends:>,eol:¬,space:·
+set spell spelllang=en_us
+let g:solarized_visibility="low"  "to make listchars display better
+colorscheme dracula       "set the color scheme
+set guioptions=           "disable all additional GUI options
+set guifont=Consolas      "set the default GUI font
+set mouse=a               "mouse clicks do not move cursor
+set mousehide             "hide mouse when typing
 " }}}
 " Key Mapping:Basic --------------------------------------------------------- {{{
 "set jk to <ESC>
 inoremap jk <ESC>
 "set <C-l> to clear search highlighting
 nnoremap <silent> <C-l> :nohlsearch<CR><C-l>
+"set <C-o> to toggle NERDtree
 nnoremap <silent> <C-o> :NERDTreeToggle<CR>
 nnoremap + :call SetFontSize_inc()<CR> :echo getfontname()<CR>
 nnoremap - :call SetFontSize_dec()<CR> :echo getfontname()<CR>
-let mapleader=" "        "set leader key to <Space>
 " }}}
 " Key Mapping:Leader Key ---------------------------------------------------- {{{
+let mapleader=" "        "set leader key to <Space>
 "source vimrc file 
 nnoremap <leader>sv :source $MYVIMRC<CR>
 "delete trailing whitespaces
@@ -99,7 +95,7 @@ nnoremap <leader>ev :tab new $MYVIMRC<CR>
 "toggle white spaces
 nnoremap <leader>ew :set list!<CR>
 " }}}
-" Function:Toggle Over length Highlighting ---------------------------------- {{{
+" Function:Toggle Over length ----------------------------------------------- {{{
 "set over length highlighting
 function! DefaultOverLength()
   highlight OverLength ctermbg=red ctermfg=white guibg=#592929
@@ -129,6 +125,7 @@ function! SetFontSize_inc()
   call UpdateFontSize()
 endfunction
 "
+"
 "decrease font size
 function! SetFontSize_dec()
   let g:fontsize= g:fontsize - 1
@@ -138,4 +135,7 @@ call UpdateFontSize()
 function! UpdateFontSize()
   execute ":set guifont=Consolas:h". g:fontsize
 endfunction
+"
+"
 " }}}
+" tkjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj
