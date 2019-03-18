@@ -1,16 +1,14 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " _Vimrc Configuration File
-" Last Change:  2019 Mar 24
+" Last Change:  2019 Mar 18
 " Maintainer:   Jonny Wilson <jonnylwilson@gmail.com>
 " License:      This file is placed in the public domain.
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
-" Settings:Windows 10 ------------------------------------------------------- {{{
-"set location of vimrc
-let $MYVIMRC='c:/users/jlw/win_home/git/vim/_vimrc'
-" }}}
-" Basic Settings ------------------------------------------------------------ {{{
+" Basic Settings ------------------------------------------------------------{{{
 syntax on                 "enable syntax highlighting
+set encoding=utf-8        "set default encoding
+set shell=powershell      "set default shell
 set showmatch             "show matching brackets
 set laststatus=2          "enable the status bar
 set showcmd               "show command in the last line of the screen
@@ -19,9 +17,9 @@ set relativenumber        "show line number relative to the line with cursor
 set ruler                 "show line and column number of cursor position
 set nowrap                "disable text wrapping
 set scrolloff=50          "minimum number of lines to keep above & below cursor
-set textwidth=120          "set text width
+set textwidth=80          "set text width
 set colorcolumn=+1        "set highlighting screen column
-set columns=120           "set default number of columns
+set columns=80           "set default number of columns
 set nrformats-=octal,hex  "number increment settings
 set hlsearch              "highlight all search results
 set incsearch             "highlight search while typing
@@ -55,21 +53,34 @@ set mousehide             "hide mouse when typing
 " }}}
 " White space Settings ------------------------------------------------------ {{{
 set list
-set listchars=tab:>-,trail:·,extends:>,eol:¬,space:+
+set listchars=tab:>-,trail:·,extends:>,eol:¬,space:·
 "
 "
 " }}}
 " Spelling Settings --------------------------------------------------------- {{{
 set spell spelllang=en_us
 " }}}
+" Package Manager:VimPlug --------------------------------------------------- {{{
+call plug#begin()
+"vimtex plugin
+Plug 'lervag/vimtex'
+"nerdtree plugin
+Plug 'scrooloose/nerdtree'
+"colorscheme plugin
+Plug 'https://github.com/xolox/vim-misc'
+Plug 'https://github.com/xolox/vim-colorscheme-switcher'
+Plug 'itchyny/lightline.vim'
+call plug#end()
+" }}}
+" PlugIn:VimLatex ----------------------------------------------------------- {{{
+let g:vimtex_view_general_viewer = 'SumatraPDF'
+" }}}
 " Key Mapping:Basic --------------------------------------------------------- {{{
 "set jk to <ESC>
 inoremap jk <ESC>
 "set <C-l> to clear search highlighting
 nnoremap <silent> <C-l> :nohlsearch<CR><C-l>
-"set <C-l> enable/disable whitespaces
-nnoremap <silent> <C-0> :set list!<CR>
-"set <C-+> enable/disable whitespaces
+nnoremap <silent> <C-o> :NERDTreeToggle<CR>
 nnoremap + :call SetFontSize_inc()<CR> :echo getfontname()<CR>
 nnoremap - :call SetFontSize_dec()<CR> :echo getfontname()<CR>
 let mapleader=" "        "set leader key to <Space>
@@ -84,9 +95,9 @@ nnoremap <leader>sp :set spell!<CR>
 "enable/disable highlighting of over length lines
 nnoremap <leader>f :call OverLengthToggle()<CR>
 "change the color scheme
-nnoremap <leader>g :call SetColorScheme()<CR>
-"open vimrc
 nnoremap <leader>ev :tab new $MYVIMRC<CR>
+"toggle white spaces
+nnoremap <leader>ew :set list!<CR>
 " }}}
 " Function:Toggle Over length Highlighting ---------------------------------- {{{
 "set over length highlighting
@@ -107,21 +118,6 @@ match OverLength /\%>81v.\+/
     highlight OverLength NONE
     let g:overlength_toggle_enabled=1
     echo 'overlength disabled'
-  endif
-endfunction
-" }}}
-" Function:Change Color Scheme ---------------------------------------------- {{{
-let g:colorscheme_toggle_enable=1
-function! SetColorScheme()
-  if g:colors_name=='dracula'
-  colorscheme solarized
-  let g:colorscheme_toggle_enable=0
-  else
-    colorscheme dracula
-    let g:colorscheme_toggle_enable=1
-  endif
-  if !g:overlength_toggle_enabled
-    call DefaultOverLength()
   endif
 endfunction
 " }}}
