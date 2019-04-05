@@ -6,6 +6,8 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Package Manager:VimPlug --------------------------------------------------- {{{
 call plug#begin()
+"ctrlp plugin
+Plug 'ctrlpvim/ctrlp.vim'
 "vimtex plugin
 Plug 'lervag/vimtex'
 "nerdtree plugin
@@ -13,24 +15,13 @@ Plug 'scrooloose/nerdtree'
 "colorscheme plugin
 Plug 'https://github.com/xolox/vim-misc'
 Plug 'https://github.com/xolox/vim-colorscheme-switcher'
+"lightline statusbar plugin
 Plug 'itchyny/lightline.vim'
 "download dracula theme
 Plug 'dracula/vim', { 'as': 'dracula' }
 call plug#end()
-" }}}
-" Package Manager:VimPlug --------------------------------------------------- {{{
-call plug#begin()
-"vimtex plugin
-Plug 'lervag/vimtex'
-"nerdtree plugin
-Plug 'scrooloose/nerdtree'
-"colorscheme plugin
-Plug 'https://github.com/xolox/vim-misc'
-Plug 'https://github.com/xolox/vim-colorscheme-switcher'
-Plug 'itchyny/lightline.vim'
-"download dracula theme
-Plug 'dracula/vim', { 'as': 'dracula' }
-call plug#end()
+"ctrlp settings
+let g:ctrlp_clear_cache_on_exit = 0
 " }}}
 " Settings: Basic ------------------------------------------------------------{{{
 syntax on                 "enable syntax highlighting
