@@ -19,9 +19,20 @@ Plug 'https://github.com/xolox/vim-colorscheme-switcher'
 Plug 'itchyny/lightline.vim'
 "download dracula theme
 Plug 'dracula/vim', { 'as': 'dracula' }
+"download vim-one colorsheme
+Plug 'https://github.com/rakr/vim-one'
+"download vim table mode
+Plug 'https://github.com/dhruvasagar/vim-table-mode'
 call plug#end()
 "ctrlp settings
 let g:ctrlp_clear_cache_on_exit = 0
+"set lightbar colorscheme
+let g:lightline = {
+      \ 'colorscheme': 'one',
+      \ }
+let g:vimtex_view_general_viewer = 'SumatraPDF'
+"set table delimiters
+let g:table_mode_corner='|'
 " }}}
 " Settings: Basic ------------------------------------------------------------{{{
 syntax on                 "enable syntax highlighting
@@ -34,7 +45,7 @@ set relativenumber        "show line number relative to the line with cursor
 set ruler                 "show line and column number of cursor position
 set textwidth=80          "set text width
 set colorcolumn=+1        "set highlighting screen column
-set columns=80           "set default number of columns
+set columns=81           "set default number of columns
 set scrolloff=50          "minimum number of lines to keep above & below cursor
 set nowrap                "disable text wrapping
 set hlsearch              "highlight all search results
@@ -50,13 +61,14 @@ set tabstop=2             "number of spaces that a <Tab> in the file counts for
 set expandtab             "use tabs instead of spaces
 set autoindent            "enable auto indent
 set shiftwidth=2          "number of spaces for auto indent
-set list
 set listchars=tab:>-,trail:·,extends:>,eol:¬,space:·
 set spell spelllang=en_us
+set spell!
 let g:solarized_visibility="low"  "to make listchars display better
-silent! colorscheme dracula       "set the color scheme
+silent! colorscheme one       "set the color scheme
 set guioptions=           "disable all additional GUI options
-set guifont=Consolas      "set the default GUI font
+"set guifont=Consolas      "set the default GUI font
+set guifont=PragmataPro:h10:cANSI:qDRAFT
 set mouse=a               "mouse clicks do not move cursor
 set mousehide             "hide mouse when typing
 " }}}
@@ -123,7 +135,7 @@ call UpdateFontSize()
   endfunction
 "
 function! UpdateFontSize()
-  execute ":set guifont=Consolas:h". g:fontsize
+  execute ":set guifont=PragmataPro:h". g:fontsize
 endfunction
 "
 "
