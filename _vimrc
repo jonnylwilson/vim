@@ -1,38 +1,25 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " _Vimrc Configuration File
-" Last Change:  2019 Mar 18
+" Last Change:  2019 May 09
 " Maintainer:   Jonny Wilson <jonnylwilson@gmail.com>
 " License:      This file is placed in the public domain.
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Package Manager:VimPlug --------------------------------------------------- {{{
 call plug#begin()
-"ctrlp plugin
-Plug 'ctrlpvim/ctrlp.vim'
-"vimtex plugin
-Plug 'lervag/vimtex'
-"nerdtree plugin
-Plug 'scrooloose/nerdtree'
-"colorscheme plugin
-Plug 'https://github.com/xolox/vim-misc'
-Plug 'https://github.com/xolox/vim-colorscheme-switcher'
-"lightline statusbar plugin
-Plug 'itchyny/lightline.vim'
-"download dracula theme
-Plug 'dracula/vim', { 'as': 'dracula' }
-"download vim-one colorsheme
-Plug 'https://github.com/rakr/vim-one'
-"download vim table mode
-Plug 'https://github.com/dhruvasagar/vim-table-mode'
+Plug 'lervag/vimtex' "vimtex plugin
+Plug 'scrooloose/nerdtree' "nerdtree plugin
+Plug 'itchyny/lightline.vim' "lightline statusbar plugin
+Plug 'https://github.com/rakr/vim-one' "download vim-one colorsheme
 call plug#end()
-"ctrlp settings
-let g:ctrlp_clear_cache_on_exit = 0
-"set lightbar colorscheme
+"
+"set lightline colorscheme
 let g:lightline = {
       \ 'colorscheme': 'one',
       \ }
+"
+"set default viewer for vimtex
 let g:vimtex_view_general_viewer = 'SumatraPDF'
-"set table delimiters
-let g:table_mode_corner='|'
+"
 " }}}
 " Settings: Basic ------------------------------------------------------------{{{
 syntax on                 "enable syntax highlighting
@@ -64,11 +51,9 @@ set shiftwidth=2          "number of spaces for auto indent
 set listchars=tab:>-,trail:·,extends:>,eol:¬,space:·
 set spell spelllang=en_us
 set spell!
-let g:solarized_visibility="low"  "to make listchars display better
 silent! colorscheme one       "set the color scheme
 set guioptions=           "disable all additional GUI options
-"set guifont=Consolas      "set the default GUI font
-set guifont=PragmataPro:h10:cANSI:qDRAFT
+set guifont=PragmataPro_Mono_Liga:h10:cANSI:qDRAFT
 set mouse=a               "mouse clicks do not move cursor
 set mousehide             "hide mouse when typing
 " }}}
@@ -79,64 +64,15 @@ inoremap jk <ESC>
 nnoremap <silent> <C-l> :nohlsearch<CR><C-l>
 "set <C-o> to toggle NERDtree
 nnoremap <silent> <C-o> :NERDTreeToggle<CR>
-nnoremap + :call SetFontSize_inc()<CR> :echo getfontname()<CR>
-nnoremap - :call SetFontSize_dec()<CR> :echo getfontname()<CR>
 " }}}
 " Key Mapping:Leader Key ---------------------------------------------------- {{{
 let mapleader=" "        "set leader key to <Space>
-"source vimrc file 
+"source vimrc file
 nnoremap <leader>sv :source $MYVIMRC<CR>
-"delete trailing whitespaces
-nnoremap <leader>dw :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 "enable/disable spelling
 nnoremap <leader>sp :set spell!<CR>
-"enable/disable highlighting of over length lines
-nnoremap <leader>f :call OverLengthToggle()<CR>
 "change the color scheme
 nnoremap <leader>ev :tab new $MYVIMRC<CR>
 "toggle white spaces
 nnoremap <leader>ew :set list!<CR>
-" }}}
-" Function:Toggle Over length ----------------------------------------------- {{{
-"set over length highlighting
-function! DefaultOverLength()
-  highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-  match OverLength /\%>81v.\+/
-endfunction
-" 
-call DefaultOverLength()
-let g:overlength_toggle_enabled=0
-function! OverLengthToggle()
-match OverLength /\%>81v.\+/
-  if g:overlength_toggle_enabled
-    call DefaultOverLength()
-    let g:overlength_toggle_enabled=0
-    echo 'overlength enabled'
-  else
-    highlight OverLength NONE
-    let g:overlength_toggle_enabled=1
-    echo 'overlength disabled'
-  endif
-endfunction
-" }}}
-" Function:Change Font Size-------------------------------------------------- {{{
-"increase font size
-let g:fontsize=10
-function! SetFontSize_inc()
-  let g:fontsize= g:fontsize + 1
-  call UpdateFontSize()
-endfunction
-"
-"
-"decrease font size
-function! SetFontSize_dec()
-  let g:fontsize= g:fontsize - 1
-call UpdateFontSize()
-  endfunction
-"
-function! UpdateFontSize()
-  execute ":set guifont=PragmataPro:h". g:fontsize
-endfunction
-"
-"
 " }}}
