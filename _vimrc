@@ -19,6 +19,7 @@ let g:lightline = {
 "
 "set default viewer for vimtex
 let g:vimtex_view_general_viewer = 'SumatraPDF'
+let g:vimtex_compiler_latexmk_engines = {'_':'-lualatex'}
 "
 " }}}
 " Settings: Basic ------------------------------------------------------------{{{
@@ -32,7 +33,7 @@ set relativenumber        "show line number relative to the line with cursor
 set ruler                 "show line and column number of cursor position
 set textwidth=80          "set text width
 set colorcolumn=+1        "set highlighting screen column
-set columns=81           "set default number of columns
+"set columns=81           "set default number of columns
 set scrolloff=50          "minimum number of lines to keep above & below cursor
 set nowrap                "disable text wrapping
 set hlsearch              "highlight all search results
